@@ -72,8 +72,8 @@ class HomePage extends StatelessWidget {
                   price: product['price'] as double,
                   image: product['imageUrl'] as String,
                   backgroundColor: index.isEven
-                        ?  (Colors.blue ?? Colors.blue)
-                        : (Colors.grey[200] ?? Colors.white),
+                        ?  const Color.fromARGB(174, 33, 149, 243)
+                        : const Color.fromARGB(132, 158, 158, 158),
                 );
               },
             ),
