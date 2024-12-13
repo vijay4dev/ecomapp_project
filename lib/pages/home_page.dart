@@ -1,3 +1,7 @@
+import 'dart:ffi';
+
+import 'package:ecomapp_project/pages/global_products.dart';
+import 'package:ecomapp_project/pages/product_card.dart';
 import 'package:ecomapp_project/pages/shoe_filter.dart';
 import 'package:flutter/material.dart';
 
@@ -55,8 +59,21 @@ class HomePage extends StatelessWidget {
             ),
             SizedBox(
               height: 120,
-              
               child: ShoeFilter(filteritem: filters), 
+            ),
+            Expanded(
+              child:ListView.builder(
+              
+              itemCount: products.length, 
+              itemBuilder:(context,index){
+                final product =  products[index];
+                return ProductCard(
+                  title: product['title'] as String,
+                  price: product['price'] as double,
+                  image: product['imageUrl'] as String
+                );
+              },
+            ),
             ),
           ],
         ),

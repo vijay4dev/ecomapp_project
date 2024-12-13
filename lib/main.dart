@@ -26,6 +26,16 @@ class MyApp extends StatelessWidget {
           prefixIconColor: Colors.black26,
           contentPadding: EdgeInsets.only(left: 0),
         ),
+        textTheme: const TextTheme(
+          titleMedium: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 30
+          ),
+          titleSmall: TextStyle(
+            fontWeight: FontWeight.w500,
+            fontSize: 20
+          )
+        )
       ),
       home: const HomePage(),
     );
