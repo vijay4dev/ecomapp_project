@@ -10,10 +10,24 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       title: 'ECCOM APP',
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      theme: ThemeData(
+          fontFamily: 'sans',
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.yellow,
+        ),
+        inputDecorationTheme: const InputDecorationTheme(
+          labelStyle: TextStyle(
+            fontSize: 23,
+            fontWeight: FontWeight.w600,
+            color: Colors.black26,
+          ),
+          prefixIconColor: Colors.black26,
+          contentPadding: EdgeInsets.only(left: 0),
+        ),
+      ),
+      home: const HomePage(),
     );
   }
 }
