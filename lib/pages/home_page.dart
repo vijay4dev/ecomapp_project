@@ -70,7 +70,10 @@ class HomePage extends StatelessWidget {
                 return ProductCard(
                   title: product['title'] as String,
                   price: product['price'] as double,
-                  image: product['imageUrl'] as String
+                  image: product['imageUrl'] as String,
+                  backgroundColor: index.isEven
+                        ?  (Colors.blue ?? Colors.blue)
+                        : (Colors.grey[200] ?? Colors.white),
                 );
               },
             ),
