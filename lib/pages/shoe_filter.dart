@@ -47,7 +47,7 @@ class _ShoeFilterState extends State<ShoeFilter> {
                             widget.filteritem[index],
                             style: const TextStyle(
                               color: Colors.black45,
-                              fontWeight: FontWeight.w800,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ),

@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           shape: RoundedRectangleBorder(side:BorderSide(width: 0,color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(50))),
           labelStyle: TextStyle(
             color: Colors.black,
-            fontSize: 18,
+            fontSize: 15,
             fontWeight: FontWeight.w400,
           ),
         ),
