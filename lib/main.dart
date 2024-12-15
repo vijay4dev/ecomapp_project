@@ -1,6 +1,8 @@
+import 'package:ecomapp_project/pages/global_products.dart';
 import 'package:ecomapp_project/pages/home_page.dart';
-import 'package:flutter/material.dart';
+import 'package:ecomapp_project/pages/product_details_page.dart';
 
+import 'package:flutter/material.dart';
 void main() {
   runApp(const MyApp());
 }
@@ -26,7 +28,21 @@ class MyApp extends StatelessWidget {
           prefixIconColor: Colors.black26,
           contentPadding: EdgeInsets.only(left: 0),
         ),
+        chipTheme: const ChipThemeData(
+          
+          backgroundColor: Color.fromARGB(255, 227, 242, 253),
+          shape: RoundedRectangleBorder(side:BorderSide(width: 0,color: Colors.transparent),borderRadius: BorderRadius.all(Radius.circular(50))),
+          labelStyle: TextStyle(
+            color: Colors.black,
+            fontSize: 18,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
         textTheme: const TextTheme(
+          titleLarge: TextStyle(
+            fontSize: 35,
+            fontWeight: FontWeight.bold,
+          ),
           titleMedium: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 30
@@ -35,9 +51,19 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.w500,
             fontSize: 25
           )
-        )
+        ),
+        appBarTheme: const AppBarTheme(
+          titleTextStyle: TextStyle(
+            fontFamily: 'Arial',
+            fontSize: 30,
+            fontWeight: FontWeight.w400,
+            color:  Colors.black,
+          ),
+          backgroundColor: Colors.white
+        ),
+        useMaterial3: true
       ),
-      home: const HomePage(),
+      home: const  HomePage(),
     );
   }
 }
