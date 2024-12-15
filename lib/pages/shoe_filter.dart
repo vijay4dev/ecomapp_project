@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ShoeFilter extends StatefulWidget {
-  final List filteritem;
+  final List <String>  filteritem;
 
   const ShoeFilter({
     super.key,

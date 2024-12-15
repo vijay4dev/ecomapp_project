@@ -34,7 +34,7 @@ class ProductCard extends StatelessWidget {
             style: Theme.of(context).textTheme.titleSmall,
             ),
             const SizedBox(height: 50),
-            Center(child: Image.asset(image,height: 170))
+            Center(child: Image.asset(image,height: 200,width: 250))
           ],
         ),
       ),

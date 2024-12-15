@@ -1,4 +1,3 @@
-import 'dart:ffi';
 
 import 'package:ecomapp_project/pages/global_products.dart';
 import 'package:ecomapp_project/pages/product_card.dart';
@@ -8,16 +7,18 @@ import 'package:flutter/material.dart';
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
-  final List<String> filters = const [
-    'ALL',
-    'Addidas',
-    'Nike',
-    'Puma',
-    'RedTape',
-  ];
+
+  List<String> getCompanyNames() { 
+    final companies = products.map((product) => product['company'] as String).toSet().toList(); 
+      companies.insert(0, 'ALL'); // Add 'ALL' filter at the beginning 
+      return companies; 
+    }
 
   @override
   Widget build(BuildContext context) {
+
+    final filters = getCompanyNames();
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -71,9 +72,7 @@ class HomePage extends StatelessWidget {
                   title: product['title'] as String,
                   price: product['price'] as double,
                   image: product['imageUrl'] as String,
-                  backgroundColor: index.isEven
-                        ?  const Color.fromARGB(174, 33, 149, 243)
-                        : const Color.fromARGB(132, 158, 158, 158),
+                  backgroundColor: const Color.fromARGB(9, 0, 0, 0),
                 );
               },
             ),
