@@ -3,7 +3,9 @@ import 'package:ecomapp_project/pages/global_products.dart';
 import 'package:ecomapp_project/pages/product_card.dart';
 import 'package:ecomapp_project/pages/product_details_page.dart';
 import 'package:ecomapp_project/pages/shoe_filter.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -69,7 +71,7 @@ class HomePage extends StatelessWidget {
                 return GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(
-                      MaterialPageRoute(builder: (context){
+                      CupertinoPageRoute(builder: (context){
                         return ProductDetailsPage(Get_Product: product);
                       })
                     );

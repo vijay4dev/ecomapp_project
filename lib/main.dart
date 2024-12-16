@@ -1,6 +1,4 @@
-import 'package:ecomapp_project/pages/global_products.dart';
 import 'package:ecomapp_project/pages/home_page.dart';
-import 'package:ecomapp_project/pages/product_details_page.dart';
 
 import 'package:flutter/material.dart';
 void main() {
