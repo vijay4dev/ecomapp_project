@@ -18,7 +18,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final filters = getCompanyNames();
+  final filters = getCompanyNames();
   final FocusNode searchFocusNode = FocusNode();
     return GestureDetector(
       onTap: () {
