@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 class ShoeFilter extends StatefulWidget {
   final List <String>  filteritem;
-
+  final FocusNode focusNode;
   const ShoeFilter({
     super.key,
-    required this.filteritem
+    required this.filteritem,
+    required this.focusNode
   });
   @override
   State<ShoeFilter> createState() => _ShoeFilterState();
@@ -31,9 +32,11 @@ class _ShoeFilterState extends State<ShoeFilter> {
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: GestureDetector(
                       onTap: (){
+                        
                         setState(() {                          
                             selected = filter;
                         });
+                        widget.focusNode.unfocus();
                       },
                       child: Chip(
                         backgroundColor:selected == filter? Colors.amber[300]:const Color.fromARGB(162, 227, 242, 253),
