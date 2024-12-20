@@ -1,9 +1,8 @@
-import 'package:ecomapp_project/pages/global_products.dart';
-import 'package:ecomapp_project/pages/product_card.dart';
-import 'package:ecomapp_project/pages/product_details_page.dart';
-import 'package:ecomapp_project/pages/shoe_filter.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:ecomapp_project/pages/cartpage.dart';
+import 'package:ecomapp_project/pages/product_list.dart';
 import 'package:flutter/material.dart';
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:google_nav_bar/google_nav_bar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -13,119 +12,49 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<String> getCompanyNames() {
-    final companies = products
-        .map((product) => product['company'] as String)
-        .toSet()
-        .toList();
-    companies.insert(0, 'ALL'); // Add 'ALL' filter at the beginning
-    return companies;
-  }
+  int _curentpage = 0;
 
-  int curentpage = 0;
+  final List<Widget> _pages = [const ProductList(), const Cartpage()];
 
-  @override
-  void initState() {
-    super.initState();
+  void _onItemTapped(int index) {
+    setState(() {
+      _curentpage = index;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final filters = getCompanyNames();
-    final FocusNode searchFocusNode = FocusNode();
-    return GestureDetector(
-      onTap: () {
-        // Unfocus the search bar when tapping outside
-        searchFocusNode.unfocus();
-      },
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: SafeArea(
-          child: Column(
-            children: [
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Text(
-                      'Shoee\nCollection',
-                      style: Theme.of(context).textTheme.titleLarge,
-                    ),
-                  ),
-                  Expanded(
-                    child: TextField(
-                      focusNode: searchFocusNode,
-                      decoration: const InputDecoration(
-                        label: Text('Search'),
-                        contentPadding: EdgeInsets.all(20),
-                        prefixIcon: Icon(Icons.search),
-                        enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(width: 1.5, color: Colors.black12),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(40),
-                              bottomLeft: Radius.circular(40)),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black45),
-                          borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(40),
-                              bottomLeft: Radius.circular(40)),
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 120,
-                child: ShoeFilter(
-                  filteritem: filters,
-                  focusNode: searchFocusNode,
-                ),
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: products.length,
-                  itemBuilder: (context, index) {
-                    final product = products[index];
-                    return GestureDetector(
-                      onTap: () {
-                        // Unfocus the TextField when tapping on a product
-                        searchFocusNode.unfocus();
-                        Navigator.of(context).push(
-                          CupertinoPageRoute(builder: (context) {
-                            return ProductDetailsPage(Get_Product: product);
-                          }),
-                        );
-                      },
-                      child: ProductCard(
-                        title: product['title'] as String,
-                        price: product['price'] as double,
-                        image: product['imageUrl'] as String,
-                        backgroundColor: const Color.fromARGB(9, 0, 0, 0),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ],
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: _pages[_curentpage],
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.all(10),
+        child: GNav(
+          rippleColor: Colors.amber[300] as Color,
+          hoverColor: Colors.amber[100] as Color,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          gap: 10,
+          activeColor: Colors.black,
+          iconSize: 30,
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+          duration: const Duration(milliseconds: 400),
+          tabBackgroundColor: Colors.amber[400] as Color,
+          color: Colors.black,
+          textStyle: const TextStyle(
+            fontSize: 20,
+            fontWeight: FontWeight.w600,
           ),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          selectedItemColor: Colors.amber,
-          unselectedItemColor: Colors.black,
-          currentIndex: curentpage,
-          onTap: (value) => setState(() => curentpage = value),
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home, size: 30),
-              label: '',
+          tabs: const [
+            GButton(
+              icon: Icons.home,
+              text: 'Home',
             ),
-            BottomNavigationBarItem(
-                icon: Icon(Icons.shopping_cart, size: 30), label: ''),
+            GButton(
+              icon: Icons.shopping_cart,
+              text: 'Cart',
+            ),
           ],
-          backgroundColor: Colors.white,
+          onTabChange: _onItemTapped,
         ),
       ),
     );
