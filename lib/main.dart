@@ -1,5 +1,4 @@
 import 'package:ecomapp_project/pages/home_page.dart';
-
 import 'package:flutter/material.dart';
 void main() {
   runApp(const MyApp());
@@ -58,6 +57,11 @@ class MyApp extends StatelessWidget {
             color:  Colors.black,
           ),
           backgroundColor: Colors.white
+        ),
+        bottomAppBarTheme: const BottomAppBarTheme(
+          color: Colors.white,
+          elevation: 0,
+          
         ),
         useMaterial3: true
       ),

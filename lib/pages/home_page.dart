@@ -1,4 +1,3 @@
-
 import 'package:ecomapp_project/pages/global_products.dart';
 import 'package:ecomapp_project/pages/product_card.dart';
 import 'package:ecomapp_project/pages/product_details_page.dart';
@@ -6,20 +5,34 @@ import 'package:ecomapp_project/pages/shoe_filter.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
 
+class _HomePageState extends State<HomePage> {
   List<String> getCompanyNames() {
-    final companies = products.map((product) => product['company'] as String).toSet().toList();
+    final companies = products
+        .map((product) => product['company'] as String)
+        .toSet()
+        .toList();
     companies.insert(0, 'ALL'); // Add 'ALL' filter at the beginning
     return companies;
   }
 
+  int curentpage = 0;
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
-  final filters = getCompanyNames();
-  final FocusNode searchFocusNode = FocusNode();
+    final filters = getCompanyNames();
+    final FocusNode searchFocusNode = FocusNode();
     return GestureDetector(
       onTap: () {
         // Unfocus the search bar when tapping outside
@@ -47,16 +60,17 @@ class HomePage extends StatelessWidget {
                         contentPadding: EdgeInsets.all(20),
                         prefixIcon: Icon(Icons.search),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(width: 1.5, color: Colors.black12),
+                          borderSide:
+                              BorderSide(width: 1.5, color: Colors.black12),
                           borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(40),
-                            bottomLeft: Radius.circular(40)),
+                              topLeft: Radius.circular(40),
+                              bottomLeft: Radius.circular(40)),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.black45),
                           borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(40),
-                            bottomLeft: Radius.circular(40)),
+                              topLeft: Radius.circular(40),
+                              bottomLeft: Radius.circular(40)),
                         ),
                       ),
                     ),
@@ -65,7 +79,10 @@ class HomePage extends StatelessWidget {
               ),
               SizedBox(
                 height: 120,
-                child: ShoeFilter(filteritem: filters,focusNode: searchFocusNode,),
+                child: ShoeFilter(
+                  filteritem: filters,
+                  focusNode: searchFocusNode,
+                ),
               ),
               Expanded(
                 child: ListView.builder(
@@ -94,6 +111,21 @@ class HomePage extends StatelessWidget {
               ),
             ],
           ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          selectedItemColor: Colors.amber,
+          unselectedItemColor: Colors.black,
+          currentIndex: curentpage,
+          onTap: (value) => setState(() => curentpage = value),
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home, size: 30),
+              label: '',
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.shopping_cart, size: 30), label: ''),
+          ],
+          backgroundColor: Colors.white,
         ),
       ),
     );
