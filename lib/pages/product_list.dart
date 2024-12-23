@@ -14,16 +14,20 @@ class ProductList extends StatefulWidget {
 
 class _MyWidgetState extends State<ProductList> {
   List<Map<String, dynamic>> filteredProducts = [];
+  final TextEditingController _searchController = TextEditingController();
   String selectedFilter = 'ALL';
 
   void filterProducts() {
+  final query = _searchController.text.toLowerCase();
   setState(() {
     filteredProducts = products.where((product) {
-      final company = product['company'].toString().toLowerCase();
-      final matchesFilter = selectedFilter == 'ALL' || company == selectedFilter.toLowerCase();
-      return matchesFilter;
-    }).toList();
-  });
+        final title = product['title'].toString().toLowerCase();
+        final company = product['company'].toString().toLowerCase();
+        final matchesQuery = title.contains(query);
+        final matchesFilter = selectedFilter == 'ALL' || company == selectedFilter.toLowerCase();
+        return matchesQuery && matchesFilter;
+      }).toList();
+    });
 }
 
 void onFilterSelected(String filter) {
@@ -37,6 +41,7 @@ void onFilterSelected(String filter) {
   void initState() {
     super.initState();
     filteredProducts = products;
+    _searchController.addListener(filterProducts);
   }
   
   List<String> getCompanyNames() {
@@ -69,6 +74,7 @@ void onFilterSelected(String filter) {
                     ),
                     Expanded(
                       child: TextField(
+                         controller: _searchController,
                         focusNode: searchFocusNode,
                         decoration: const InputDecoration(
                           label: Text('Search'),
