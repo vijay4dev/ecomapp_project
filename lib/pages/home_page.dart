@@ -1,7 +1,6 @@
 import 'package:ecomapp_project/pages/cartpage.dart';
 import 'package:ecomapp_project/pages/product_list.dart';
 import 'package:flutter/material.dart';
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 
 class HomePage extends StatefulWidget {
@@ -26,7 +25,10 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: _pages[_curentpage],
+      body: IndexedStack(
+        index: _curentpage,
+        children: _pages,
+      ),
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.all(10),
         child: GNav(
@@ -37,7 +39,7 @@ class _HomePageState extends State<HomePage> {
           activeColor: Colors.black,
           iconSize: 30,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-          duration: const Duration(milliseconds: 400),
+          duration: const Duration(milliseconds: 100),
           tabBackgroundColor: Colors.amber[400] as Color,
           color: Colors.black,
           textStyle: const TextStyle(
