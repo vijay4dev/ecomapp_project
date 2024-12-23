@@ -16,23 +16,25 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
 
   void ontap() {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
+         SnackBar(
           content: Text(
-            'Product Added to cart',
-            style: TextStyle(
+            '${widget.Get_Product['title']} Added to cart',
+            style: const TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
               color: Colors.white,
             ),
           ),
           behavior: SnackBarBehavior.floating,
-          shape: StadiumBorder(),
-          duration: Duration(seconds: 2),
+          shape: const StadiumBorder(),
+          duration: const Duration(seconds: 2),
           backgroundColor: Colors.blue,
         ),
       );
-      Provider.of<CartProvider>(context, listen: false)
-          .addProduct(widget.Get_Product);
+       Provider.of<CartProvider>(context, listen: false).addProduct({
+      ...widget.Get_Product,
+      'selectedSize': selected.toString(),
+    });
   }
 
   @override
@@ -105,6 +107,25 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   child: ElevatedButton.icon(
                     onPressed: () {
                       // Add to cart
+                      if(selected == 0){
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text(
+                              'Please select a size',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                                color: Colors.white,
+                              ),
+                            ),
+                            behavior: SnackBarBehavior.floating,
+                            shape: StadiumBorder(),
+                            duration: Duration(seconds: 2),
+                            backgroundColor: Colors.red,
+                          ),
+                        );
+                        return;
+                      }
                       ontap();
                     },
                     style: ElevatedButton.styleFrom(
