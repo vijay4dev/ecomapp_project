@@ -1,4 +1,6 @@
+import 'package:ecomapp_project/pages/cart_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class ProductDetailsPage extends StatefulWidget {
   final Map<String, dynamic> Get_Product;
@@ -11,6 +13,16 @@ class ProductDetailsPage extends StatefulWidget {
 
 class _ProductDetailsPageState extends State<ProductDetailsPage> {
   int selected = 0;
+
+  void ontap() {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Product added to cart'),
+        duration: Duration(seconds: 1),
+      ),
+    );
+    Provider.of<CartProvider>(context, listen: false).addProduct(widget.Get_Product);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -82,7 +94,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   child: ElevatedButton.icon(
                     onPressed: () {
                       // Add to cart
-                      
+                      ontap();
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.amber,

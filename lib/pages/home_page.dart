@@ -12,7 +12,6 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _curentpage = 0;
-
   final List<Widget> _pages = [const ProductList(), const Cartpage()];
 
   void _onItemTapped(int index) {
@@ -39,7 +38,7 @@ class _HomePageState extends State<HomePage> {
           activeColor: Colors.black,
           iconSize: 30,
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-          duration: const Duration(milliseconds: 100),
+          duration: const Duration(milliseconds: 400),
           tabBackgroundColor: Colors.amber[400] as Color,
           color: Colors.black,
           textStyle: const TextStyle(

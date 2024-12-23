@@ -72,3 +72,14 @@ final products = [
     'sizes': [7, 8, 9, 10],
   },
 ];
+
+final cart = [
+  {
+    'id': '3',
+    'title': 'Vans Skate Shoes',
+    'price': 55.20,
+    'imageUrl': 'assets/images/shoes_9.png',
+    'company': 'Vans',
+    'sizes': '8',
+  }
+];

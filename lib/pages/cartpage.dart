@@ -1,4 +1,6 @@
+import 'package:ecomapp_project/pages/cart_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Cartpage extends StatefulWidget {
   const Cartpage({super.key});
@@ -10,10 +12,49 @@ class Cartpage extends StatefulWidget {
 class _MyWidgetState extends State<Cartpage> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      body: Text(
-        'Cart Page'
-      ),
-    );
+    final cart = context.watch<CartProvider>().cart;
+    return Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          title: Center(
+            child: Text('Cart Page',
+                style: Theme.of(context).textTheme.titleLarge),
+          ),
+          backgroundColor: Colors.white,
+        ),
+        body: ListView.builder(
+          itemCount: cart.length,
+          itemBuilder: (context, index) {
+            final product = cart[index];
+            return ListTile(
+              leading: Image.asset(
+                product['imageUrl'].toString(),
+                width: 80,
+                height: 80,
+                fit: BoxFit.cover,
+              ),
+              title: Text(
+                '${product['title']}',
+                style: Theme.of(context).textTheme.titleSmall,
+              ),
+              subtitle: Text(
+                '\$ ${product['price']}',
+                style: const TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              trailing: IconButton(
+                icon: const Icon(Icons.dangerous),
+                color: const Color.fromARGB(255, 200, 55, 45),
+                onPressed: () {
+                  setState(() {
+                    cart.removeAt(index);
+                  });
+                },
+              ),
+            );
+          },
+        ));
   }
 }
