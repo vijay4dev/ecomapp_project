@@ -33,8 +33,7 @@ class _ShoeFilterState extends State<ShoeFilter> {
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: GestureDetector(
-                      onTap: (){
-                        
+                      onTap: (){        
                         setState(() {                          
                             selected = filter;
                         });

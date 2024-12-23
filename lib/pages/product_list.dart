@@ -16,7 +16,7 @@ class _MyWidgetState extends State<ProductList> {
   List<Map<String, dynamic>> filteredProducts = [];
   String selectedFilter = 'ALL';
 
-  void _filterProducts() {
+  void filterProducts() {
   setState(() {
     filteredProducts = products.where((product) {
       final company = product['company'].toString().toLowerCase();
@@ -26,10 +26,10 @@ class _MyWidgetState extends State<ProductList> {
   });
 }
 
-void _onFilterSelected(String filter) {
+void onFilterSelected(String filter) {
   setState(() {
     selectedFilter = filter;
-    _filterProducts();
+    filterProducts();
   });
 }
 
@@ -97,7 +97,7 @@ void _onFilterSelected(String filter) {
                   child: ShoeFilter(
                     filteritem: filters,
                     focusNode: searchFocusNode,
-                    onFilterSelected: _onFilterSelected,
+                    onFilterSelected: onFilterSelected,
                   ),
                 ),
                 Expanded(
