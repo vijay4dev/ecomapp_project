@@ -5,7 +5,6 @@ class CartProvider extends ChangeNotifier{
 
   void addProduct(Map<String, dynamic> product){
     cart.add(product);
-    print(cart);
     notifyListeners();
   }
 

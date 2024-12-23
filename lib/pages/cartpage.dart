@@ -1,3 +1,4 @@
+
 import 'package:ecomapp_project/pages/cart_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +11,7 @@ class Cartpage extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<Cartpage> {
+
   @override
   Widget build(BuildContext context) {
     final cart = context.watch<CartProvider>().cart;
@@ -49,7 +51,21 @@ class _MyWidgetState extends State<Cartpage> {
                 color: const Color.fromARGB(255, 200, 55, 45),
                 onPressed: () {
                   setState(() {
-                    cart.removeAt(index);
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Product removed from cart',style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500,
+                            color: Colors.white,
+                          ),),
+                          behavior: SnackBarBehavior.floating,
+                          shape: StadiumBorder(),
+                          duration: Duration(seconds: 2),
+                          backgroundColor: Colors.red,
+                        ),
+                    );
+                    Provider.of<CartProvider>(context, listen: false)
+                        .removeProduct(product);
                   });
                 },
               ),

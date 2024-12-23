@@ -15,13 +15,24 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
   int selected = 0;
 
   void ontap() {
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Product added to cart'),
-        duration: Duration(seconds: 1),
-      ),
-    );
-    Provider.of<CartProvider>(context, listen: false).addProduct(widget.Get_Product);
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Product Added to cart',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w500,
+              color: Colors.white,
+            ),
+          ),
+          behavior: SnackBarBehavior.floating,
+          shape: StadiumBorder(),
+          duration: Duration(seconds: 2),
+          backgroundColor: Colors.blue,
+        ),
+      );
+      Provider.of<CartProvider>(context, listen: false)
+          .addProduct(widget.Get_Product);
   }
 
   @override
@@ -79,8 +90,8 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                               backgroundColor:
                                   selected == size ? Colors.amber : null,
                               label: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 8.0),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
                                 child: Text('$size'),
                               ),
                             ),
