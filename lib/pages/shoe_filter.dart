@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 class ShoeFilter extends StatefulWidget {
   final List <String>  filteritem;
   final FocusNode focusNode;
+    final ValueChanged<String> onFilterSelected;
   const ShoeFilter({
     super.key,
     required this.filteritem,
-    required this.focusNode
+    required this.focusNode,
+    required this.onFilterSelected,
   });
   @override
   State<ShoeFilter> createState() => _ShoeFilterState();
@@ -37,6 +39,7 @@ class _ShoeFilterState extends State<ShoeFilter> {
                             selected = filter;
                         });
                         widget.focusNode.unfocus();
+                        widget.onFilterSelected(filter); // Notify parent widge
                       },
                       child: Chip(
                         backgroundColor:selected == filter? Colors.amber[300]:const Color.fromARGB(162, 227, 242, 253),

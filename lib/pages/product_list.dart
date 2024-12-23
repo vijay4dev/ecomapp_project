@@ -13,7 +13,32 @@ class ProductList extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<ProductList> {
+  List<Map<String, dynamic>> filteredProducts = [];
+  String selectedFilter = 'ALL';
 
+  void _filterProducts() {
+  setState(() {
+    filteredProducts = products.where((product) {
+      final company = product['company'].toString().toLowerCase();
+      final matchesFilter = selectedFilter == 'ALL' || company == selectedFilter.toLowerCase();
+      return matchesFilter;
+    }).toList();
+  });
+}
+
+void _onFilterSelected(String filter) {
+  setState(() {
+    selectedFilter = filter;
+    _filterProducts();
+  });
+}
+
+  @override
+  void initState() {
+    super.initState();
+    filteredProducts = products;
+  }
+  
   List<String> getCompanyNames() {
     final companies = products
         .map((product) => product['company'] as String)
@@ -72,13 +97,14 @@ class _MyWidgetState extends State<ProductList> {
                   child: ShoeFilter(
                     filteritem: filters,
                     focusNode: searchFocusNode,
+                    onFilterSelected: _onFilterSelected,
                   ),
                 ),
                 Expanded(
                   child: ListView.builder(
-                    itemCount: products.length,
+                    itemCount: filteredProducts.length,
                     itemBuilder: (context, index) {
-                      final product = products[index];
+                    final product = filteredProducts[index];
                       return GestureDetector(
                         onTap: () {
                           // Unfocus the TextField when tapping on a product
