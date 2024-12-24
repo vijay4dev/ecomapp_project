@@ -62,7 +62,23 @@ flutter run
 
 ## Project Structure
 
-shoee/ ├── android/ # Android-specific files ├── ios/ # iOS-specific files ├── lib/ # Main Flutter application code │ ├── pages/ # Application pages │ │ ├── cart_provider.dart │ │ ├── cartpage.dart │ │ ├── product_card.dart │ │ ├── product_details_page.dart │ │ ├── product_list.dart │ │ ├── shoe_filter.dart │ ├── main.dart # Main entry point of the application ├── assets/ # Assets such as images and fonts ├── build/ # Generated files ├── pubspec.yaml # Project dependencies and metadata └── README.md # Project README file
+shoee/
+├── android/                # Android-specific files
+├── ios/                    # iOS-specific files
+├── lib/                    # Main Flutter application code
+│   ├── pages/              # Application pages
+│   │   ├── cart_provider.dart     # Manages cart state
+│   │   ├── cartpage.dart          # Displays the shopping cart
+│   │   ├── product_card.dart      # Displays individual product cards
+│   │   ├── product_details_page.dart # Displays detailed product information
+│   │   ├── product_list.dart      # Displays list of products with search/filter
+│   │   ├── shoe_filter.dart      # Filter widget to filter products by company
+│   ├── main.dart             # Main entry point of the application
+├── assets/                  # Assets such as images and fonts
+├── build/                   # Generated files
+├── pubspec.yaml             # Project dependencies and metadata
+└── README.md                # Project README file
+
 
 ## Key Files
 
