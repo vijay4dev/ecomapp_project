@@ -61,7 +61,7 @@ flutter run
 ```
 
 ## Project Structure
-
+```bash
 shoee/ 
 ├── android/ # Android-specific files 
 ├── ios/ # iOS-specific files 
@@ -78,7 +78,7 @@ shoee/
 ├── build/ # Generated files 
 ├── pubspec.yaml # Project dependencies and metadata 
 └── README.md # Project README file
-
+```
 
 ## Key Files
 
