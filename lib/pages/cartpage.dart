@@ -24,7 +24,7 @@ class _CartpageState extends State<Cartpage> {
         ),
         backgroundColor: Colors.white,
       ),
-      body: ListView.builder(
+      body: cart.isEmpty? Center(child: Text("No product in Cart",style: Theme.of(context).textTheme.titleMedium,)):ListView.builder(
         itemCount: cart.length,
         itemBuilder: (context, index) {
           final product = cart[index];
@@ -33,6 +33,7 @@ class _CartpageState extends State<Cartpage> {
             direction: DismissDirection.endToStart,
             onDismissed: (direction) {
               Provider.of<CartProvider>(context, listen: false).removeProduct(product);
+              setState(() {});
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   content: Text(

@@ -3,12 +3,15 @@ import 'package:flutter/material.dart';
 class ShoeFilter extends StatefulWidget {
   final List <String>  filteritem;
   final FocusNode focusNode;
-    final ValueChanged<String> onFilterSelected;
+  final ValueChanged<String> onFilterSelected;
+  final String selectedFilter;
+
   const ShoeFilter({
     super.key,
     required this.filteritem,
     required this.focusNode,
     required this.onFilterSelected,
+    required this.selectedFilter,
   });
   @override
   State<ShoeFilter> createState() => _ShoeFilterState();

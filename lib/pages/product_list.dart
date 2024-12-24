@@ -27,6 +27,9 @@ class _MyWidgetState extends State<ProductList> {
         final matchesFilter = selectedFilter == 'ALL' || company == selectedFilter.toLowerCase();
         return matchesQuery && matchesFilter;
       }).toList();
+      if (query.isNotEmpty) {
+      selectedFilter = 'ALL';
+      }
     });
 }
 
@@ -103,6 +106,7 @@ void onFilterSelected(String filter) {
                   child: ShoeFilter(
                     filteritem: filters,
                     focusNode: searchFocusNode,
+                    selectedFilter: selectedFilter,
                     onFilterSelected: onFilterSelected,
                   ),
                 ),
